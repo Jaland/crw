@@ -9,7 +9,7 @@
 #   Red Hat, Inc. - initial API and implementation
 ARG PYTHON_VERSION=36
 
-FROM registry.access.redhat.com/codeready-workspaces/theia-endpoint-rhel8 as endpoint
+FROM registry.redhat.io/codeready-workspaces/theia-endpoint-rhel8 as endpoint
 FROM registry.access.redhat.com/ubi7/python-${PYTHON_VERSION}:latest
 USER root
 
@@ -29,8 +29,6 @@ RUN pip install "ansible==${ANSIBLE_VERSION}" \
 	pylint \
 	pyinotify \
 	apache-libcloud \
-	google-cloud \
-	azure \
 	boto \
 	boto3 \
 	docker \
@@ -39,7 +37,6 @@ RUN pip install "ansible==${ANSIBLE_VERSION}" \
 	netaddr \
 	requests \
 	"idna<2.8" \
-	ansible-tower-cli \
 	"pexpect==4.6.0" \
 	python-memcached \
 	molecule \
@@ -55,11 +52,11 @@ RUN pip install "ansible==${ANSIBLE_VERSION}" \
 	infoblox-client \
 	jmespath \
 	yaql \
-	"click==6.7" \
+	"click==7.0" \
 	"colorama==0.3.9" \
 	"Jinja2==2.10.1" \
 	"PyYAML<6,>=5.1" \
-	"six==1.11.0"
+	"six==1.13"
 
 COPY --from=endpoint /home/theia /home/theia
 COPY --from=endpoint /projects /projects
